@@ -1,0 +1,12 @@
+{
+  "name": "arauto-tables",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Cesar de Barros <cbsorrilha@hotmail.com> (https://dbarros.dev)",
+  "license": "MIT"
+}
