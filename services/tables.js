@@ -23,27 +23,10 @@ const createTable = async (table) => {
   }
 }
 
-const parseFilters = (filters) => {
-  const parsedFilters = []
-
-  if(filters.name) {
-    parsedFilters.push({ $text : { $search : filters.name } }) 
-  }
-
-  if(filters.system) {
-    parsedFilters.push({ $text : { $search : filters.system } }) 
-  }
-
-  if(filters.tags) {
-    parsedFilters.push({tags: filters.tags})
-  }
-
-  return parsedFilters.reduce((stck, nxt) => ({...stck, ...nxt}), {})
-}
-
 const getTables = async ({ page, limit, filters }) => {
   try {
-    const parsedFilters = parseFilters(filters)
+    console.log('filters', filters)
+    const parsedFilters = TableModel.parseFilters(filters)
     const tables = await TableModel
     .find(parsedFilters)
     .limit(limit * 1)

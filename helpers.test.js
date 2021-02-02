@@ -11,16 +11,20 @@ describe("Test helper functions", () => {
       expect(filterQueryToObject("")).toStrictEqual({})
     })
 
-    it('should return a object with the given query', () => {
+    it('should return a object with the given query if only one param is given', () => {
       expect(filterQueryToObject("a=b")).toStrictEqual({"a": "b"})
     })
 
-    it('should return a object with the given query', () => {
+    it('should return a object with the given query if only many params are given', () => {
       expect(filterQueryToObject("a=b;c=d;e=f")).toStrictEqual({
         "a": "b",
         "c": "d",
         "e": "f"
       })
+    })
+
+    it('should return a object with the given query', () => {
+      expect(filterQueryToObject("a=b,c,d")).toStrictEqual({"a": ["b", "c", "d"]})
     })
   })
 })

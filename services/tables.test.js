@@ -84,7 +84,7 @@ describe('Testing the service methods', () => {
 
   describe('Testing the getTables', () => {
     afterEach(() => {
-      jest.restoreAllMocks()
+      jest.clearAllMocks()
     })
 
     it('should be a function', () => {
@@ -114,21 +114,6 @@ describe('Testing the service methods', () => {
           currentPage: 1,
         }
         await expect(getTables({page: 1, limit: 1, filters: {}})).resolves.toStrictEqual(valid)
-      } catch (error) {
-        console.error(error)
-        throw error
-      }
-    })
-
-    it('should return test table with name filter', async () => {
-      try {
-        const valid = {
-          tables: [test],
-          totalPages: 1,
-          currentPage: 1,
-        }
-        await expect(getTables({page: 1, limit: 1, filters: { name: 'filters.name' }})).resolves.toStrictEqual(valid)
-        expect(find).toHaveBeenCalledWith({ $text : { $search : 'filters.name' } })
       } catch (error) {
         console.error(error)
         throw error

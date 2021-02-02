@@ -22,6 +22,28 @@ const tableSchema = new mongoose.Schema({
 
 tableSchema.index({ name: 'text', system: 'text' });
 
+tableSchema.statics.parseFilters = (filters) => {
+  const parsedFilters = []
+
+  if(filters.name && !filters.system) {
+    parsedFilters.push({ $text : { $search : filters.name } }) 
+  }
+
+  if(filters.system && !filters.name) {
+    parsedFilters.push({ $text : { $search : filters.system } }) 
+  }
+
+  if(filters.tags && !Array.isArray(filters.tags)) {
+    parsedFilters.push({tags: filters.tags})
+  }
+  
+  if(filters.tags && Array.isArray(filters.tags)) {
+    parsedFilters.push({tags: { $in: filters.tags }})
+  }
+
+  return parsedFilters.reduce((stck, nxt) => ({...stck, ...nxt}), {})
+}
+
 const TableModel = mongoose.model('Table', tableSchema)
 
 module.exports = TableModel
