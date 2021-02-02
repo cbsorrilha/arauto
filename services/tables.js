@@ -25,7 +25,6 @@ const createTable = async (table) => {
 
 const getTables = async ({ page, limit, filters }) => {
   try {
-    console.log('filters', filters)
     const parsedFilters = TableModel.parseFilters(filters)
     const tables = await TableModel
     .find(parsedFilters)
