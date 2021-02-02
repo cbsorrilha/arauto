@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- 14.15.1
+before_script:
+- npm install
+before_deploy:
+- npm install
+- npm run build
+- ls -a
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: O9TFwhd/O/P728k7kg7qbpEOXovG8u3SHBvJvi2zveNQlSgait+SwNiUBE5aYer7aAELHjPhZnLvA9cOKxJgIFbmVTyGgZSLZlDk0/KQdfEn1yAoOcwAXssOsNlamozF50hO55x8QZXwKP3yTn0yeVVxHb+i+Gb8DWqYqzhSB1WvakQXVEZyWc+kPxJ7pZnJdj7p2aDWi3C9iHpm0HKr1VAttk9x6HeckqGnWvTQaCoZd+NOWq6UxF9av3pjjPGAEW2boAHnvHR66ybDVUimssKdEAS0u0idK8BOyldIJTOchSi9yJr+CXe3oxj8DSmTjYOCQiDT75lOulgyu2z25KbiSocwJne29XlhcgfHvNqk96yLg6cbWJy5ODhY/czJDIxHHawnBdAIrgeI5J+pS45MRH9miPZnsfm+PdsgLdo65CCTh3mDDVMDaZkaMGRodhkAcCdfvqTy9cN+7tJSXMrxOZRw63VfJiYMw/IApObOPY5Yagp+Lm48NL3nJbTqA3Dkrr8VFeg10fYH7vvNA4ec1j0M9/A4pJVUEEgX9QybRHjjtmbzh2H1hGMlI/u/GtdFNcS8dpW336i2RL00fZc5Pmi5y0HT/Pwvuw+htJOjJmzMECHTgz8rjHgG6EoIWGZJ/kpZYc/1J4b2AdQ8guDl+wLDmtZL+fffjOWMj18=
+  app: arauto-api
