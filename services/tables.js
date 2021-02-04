@@ -13,6 +13,7 @@ const createTable = async (table) => {
       tags: table.tags,
       players: table.players,
       address: table.address,
+      recruiting: table.recruiting,
     });
   
     await newTable.save()

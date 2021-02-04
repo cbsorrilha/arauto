@@ -48,6 +48,11 @@ describe("Testing table model",  () => {
     })
   })
   describe("Testing model parseFilters static methods", () => {
+    it('should retrieve text filter with the given narratorId property', () => {
+      const filter = TableModel.parseFilters({narratorId: 'foo'})
+      expect(filter).toStrictEqual({ narratorId: 'foo'})
+    })
+
     it('should retrieve text filter with the given name property', () => {
       const filter = TableModel.parseFilters({name: 'foo'})
       expect(filter).toStrictEqual({ $text : { $search : 'foo' } })
@@ -71,6 +76,16 @@ describe("Testing table model",  () => {
     it('should retrive an $in object if many tags are given',  () => {
       const filter = TableModel.parseFilters({tags: ['foo', 'bar']})
       expect(filter).toStrictEqual({ tags: {$in: ['foo', 'bar']} })
+    })
+
+    it('should retrieve text filter with the given online property', () => {
+      const filter = TableModel.parseFilters({online: 'foo'})
+      expect(filter).toStrictEqual({ online: 'foo'})
+    })
+
+    it('should retrieve text filter with the given recruiting property', () => {
+      const filter = TableModel.parseFilters({recruiting: 'foo'})
+      expect(filter).toStrictEqual({ recruiting: 'foo'})
     })
   })
 })
