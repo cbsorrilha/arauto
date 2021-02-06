@@ -1,9 +1,10 @@
 require('dotenv').config()
-const {promisedDBConnection} = require('./db')
 const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const {promisedDBConnection} = require('./db')
 const package = require('./package.json')
 const {createTable, getTables} = require('./services/tables')
-const bodyParser = require('body-parser')
 const {filterQueryToObject} = require('./helpers')
 const app = express()
 const port = process.env.PORT
@@ -11,8 +12,10 @@ const port = process.env.PORT
 async function main (app, port) {
 
   app.use(bodyParser.json())
+  app.use(cors())
 
-  const db = await promisedDBConnection()
+  await promisedDBConnection()
+
 
   app.get('/', (req, res) => {
     res.json({
